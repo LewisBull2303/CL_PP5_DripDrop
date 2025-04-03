@@ -2,7 +2,7 @@ import jwtDecode from "jwt-decode";
 import { axiosReq } from "../api/axiosDefaults";
 
 /*
-  Getss and updates different types of data for the InfiniteScroll component
+  Gets and updates different types of data for the InfiniteScroll component
   Sends a request to the next page of results
   Filters out any duplicates of the posts already displayed 
 */
@@ -73,6 +73,10 @@ export const shouldRefreshToken = () => {
     return !!localStorage.getItem("refreshTokenTimestamp");
     };
 
+/*
+  Remove the value from the local storage if the user logs out
+  or their refresh token has expired
+*/
 export const removeTokenTimestamp = () => {
     localStorage.removeItem("refreshTokenTimestamp");
     };
