@@ -54,3 +54,17 @@ return profile.id === clickedProfile.id
     ? { ...profile, following_number: profile.following_number - 1 }
     : profile;
 };
+
+/*
+  Sets a token timestamp in the browser storage
+  Accepts the data object returned by the API on login
+*/
+export const setTokenTimestamp = (data) => {
+    const refreshTokenTimestamp = jwtDecode(data?.refresh_token).exp;
+    localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
+  };
+
+
+export const shouldRefreshToken = () => {
+return !!localStorage.getItem("refreshTokenTimestamp");
+};
