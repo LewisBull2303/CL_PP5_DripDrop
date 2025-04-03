@@ -27,7 +27,7 @@ export const fetchMoreData = async (resource, setResource) => {
   Increases the number of followers of the profile clicked by 1
   Increases the number of following users by 1
 */
-export const followHelper = (profile, clickedProfile, following_id) => {
+export const followUsers = (profile, clickedProfile, following_id) => {
     return profile.id === clickedProfile.id
       ? {
           ...profile,
@@ -39,8 +39,11 @@ export const followHelper = (profile, clickedProfile, following_id) => {
       : profile;
   };
 
-
-export const unfollowHelper = (profile, clickedProfile) => {
+/*
+  Decrease the number of followers of profile clicked by 1
+  Decrease the number of following users by 1
+*/
+export const unfollowUsers = (profile, clickedProfile) => {
 return profile.id === clickedProfile.id
     ? {
         ...profile,
