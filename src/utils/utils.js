@@ -64,7 +64,11 @@ export const setTokenTimestamp = (data) => {
     localStorage.setItem("refreshTokenTimestamp", refreshTokenTimestamp);
   };
 
-
+/*
+  Indicates if users token should be refreshed or not
+  Returns the refreshTokenTimestamp value from local storage
+  Token will be refreshed only for a logged in user
+*/
 export const shouldRefreshToken = () => {
-return !!localStorage.getItem("refreshTokenTimestamp");
-};
+    return !!localStorage.getItem("refreshTokenTimestamp");
+    };
