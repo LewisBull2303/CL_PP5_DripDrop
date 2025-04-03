@@ -1,6 +1,12 @@
 import jwtDecode from "jwt-decode";
 import { axiosReq } from "../api/axiosDefaults";
 
+/*
+  Getss and updates different types of data for the InfiniteScroll component
+  Sends a request to the next page of results
+  Filters out any duplicates of the posts already displayed 
+*/
+
 export const fetchMoreData = async (resource, setResource) => {
     try {
       const { data } = await axiosReq.get(resource.next);
