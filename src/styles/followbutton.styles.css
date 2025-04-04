@@ -1,0 +1,15 @@
+.Button {
+    border-radius: 100px;
+    border-color: transparent;
+    font-size: 0.8rem;
+    padding: 4px 9px;
+    margin-left: 2px;
+    min-width: 70px;
+  }
+  
+  .ButtonFollow {
+    font-weight: bold;
+    background-color: var(--dark-slate-grey);
+    color: #fff;
+  }
+  
