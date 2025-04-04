@@ -8,3 +8,12 @@ export const SetProfileDataContext = createContext();
 
 export const useProfileData = () => useContext(ProfileDataContext);
 export const useSetProfileData = () => useContext(SetProfileDataContext);
+
+export const ProfileDataProvider = ({ children }) => {
+    const [profileData, setProfileData] = useState({
+      pageProfile: { results: [] },
+      popularProfiles: { results: [] },
+    });
+    
+    const currentUser = useCurrentUser();
+}
