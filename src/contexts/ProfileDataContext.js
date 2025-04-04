@@ -14,6 +14,38 @@ export const ProfileDataProvider = ({ children }) => {
       pageProfile: { results: [] },
       popularProfiles: { results: [] },
     });
-    
+
     const currentUser = useCurrentUser();
+
+    /*
+    Makes a request to the /followers/ endpoint
+    Gets the profile ID
+    If the the user just followed (clicked)
+    Updates profile page and PopularProfiles data
+  */
+  const handleFollow = async (clickedProfile) => {
+    try {
+      const { data } = await axiosRes.post("/followers/", {
+        followed: clickedProfile.id,
+      });
+
+      setProfileData((prevState) => ({
+        ...prevState,
+        pageProfile: {
+          results: prevState.pageProfile.results.map((profile) =>
+            followHelper(profile, clickedProfile, data.id)
+          ),
+        },
+        popularProfiles: {
+          ...prevState.popularProfiles,
+          results: prevState.popularProfiles.results.map((profile) =>
+            followHelper(profile, clickedProfile, data.id)
+          ),
+        },
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 }
