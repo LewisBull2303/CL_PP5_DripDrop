@@ -72,7 +72,39 @@ export const ProfileDataProvider = ({ children }) => {
             },
           }));
         } catch (err) {
-          // console.log(err);
+          console.log(err);
         }
       };
-}
+
+   /*
+    Fetches app popularProfiles data on mount
+    orders in descending based on how many followers
+    Displays the most followed profile at the top
+  */
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(
+          "/profiles/?ordering=-followers_number"
+        );
+        setProfileData((prevState) => ({
+          ...prevState,
+          popularProfiles: data,
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    handleMount();
+  }, [currentUser]);
+
+  return (
+    <ProfileDataContext.Provider value={profileData}>
+      <SetProfileDataContext.Provider
+        value={{ setProfileData, handleFollow, handleUnfollow }}
+      >
+        {children}
+      </SetProfileDataContext.Provider>
+    </ProfileDataContext.Provider>
+  );
+};
