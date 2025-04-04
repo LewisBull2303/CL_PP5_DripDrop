@@ -15,7 +15,7 @@ const Profile = (props) => {
   
     return (
       <div
-        className={`my-3 d-flex align-items-center`}
+        className={`my-3 d-flex align-items-center ${styles.ProfilesDisplaySmall}`}
       >
         <div>
           <Link to={`/profiles/${id}`}>
