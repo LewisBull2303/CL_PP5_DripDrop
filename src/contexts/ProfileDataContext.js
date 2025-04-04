@@ -48,4 +48,31 @@ export const ProfileDataProvider = ({ children }) => {
     }
   };
 
+  /*
+    Makes a request to the /followers/ endpoint
+    Get the profile ID
+    If the the user just unfollowed (clicked)
+    Updates PopularProfiles data
+  */
+    const handleUnfollow = async (clickedProfile) => {
+        try {
+          await axiosRes.delete(`/followers/${clickedProfile.following_id}/`);
+          setProfileData((prevState) => ({
+            ...prevState,
+            pageProfile: {
+              results: prevState.pageProfile.results.map((profile) =>
+                unfollowHelper(profile, clickedProfile)
+              ),
+            },
+            popularProfiles: {
+              ...prevState.popularProfiles,
+              results: prevState.popularProfiles.results.map((profile) =>
+                unfollowHelper(profile, clickedProfile)
+              ),
+            },
+          }));
+        } catch (err) {
+          // console.log(err);
+        }
+      };
 }
