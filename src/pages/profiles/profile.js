@@ -28,20 +28,20 @@ const Profile = (props) => {
           </Link>
         </div>
   
-        <div className={` ml-auto`}>
+        <div className={`${buttonsStyles.FollowButtonsRemove} ml-auto`}>
           {/* Displays follow/unfollow buttons and do not allow users to follow themselves */}
           {currentUser &&
             !is_owner &&
             (following_id ? (
               <Button
-                className={``}
+                className={`${buttonsStyles.Button} ${buttonsStyles.ButtonUnfollow}`}
                 onClick={() => handleUnfollow(profile)}
               >
                 unfollow
               </Button>
             ) : (
               <Button
-                className={``}
+                className={`${buttonsStyles.Button} ${buttonsStyles.ButtonFollow}`}
                 onClick={() => handleFollow(profile)}
               >
                 follow
