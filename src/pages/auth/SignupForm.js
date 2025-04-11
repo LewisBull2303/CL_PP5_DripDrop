@@ -17,4 +17,14 @@ const SignUpForm = () => {
   const { username, password1, password2 } = signUpData;
   const [errors, setErrors] = useState({});
   const history = useHistory();
+
+  /* 
+    Handles changes to any of the input fields
+  */
+    const handleChange = (e) => {
+        setSignUpData({
+          ...signUpData,
+          [e.target.name]: e.target.value, // key is an input field name, value is the value entered by the user
+        });
+      };
 }
