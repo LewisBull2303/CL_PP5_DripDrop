@@ -28,4 +28,20 @@ function LogInForm() {
       [e.target.name]: e.target.value,
     });
   };
+
+  /* 
+    Handles submitted in the form data on logging in
+    Redirect user to home page
+  */
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+          const { data } = await axios.post("/dj-rest-auth/login/", logInData);
+          setCurrentUser(data.user);
+          setTokenTimestamp(data);
+          history.push("/");
+        } catch (err) {
+          setErrors(err.response?.data);
+        }
+      };
 }
