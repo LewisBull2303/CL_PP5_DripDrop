@@ -44,4 +44,14 @@ function LogInForm() {
           setErrors(err.response?.data);
         }
       };
+
+      return (
+        <Row className="text-center">
+          <Col className="my-auto offset-md-2" md={8}>
+            <Container className={`${appStyles.Content} p-4 `}>
+            <h1 className="mb-4">Log in</h1>
+            </Container>
+          </Col>
+        </Row>
+      );
 }
