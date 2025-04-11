@@ -107,6 +107,21 @@ function LogInForm() {
                 onChange={handleChange}
               />
             </Form.Group>
+
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Button
+              className={`my-3 ${appStyles.button}`}
+              type="submit"
+              onMouseDown={(e) => e.preventDefault()}
+            >
+              Log in!
+            </Button>
+
             </Form>
         </Container>
         </Col>
