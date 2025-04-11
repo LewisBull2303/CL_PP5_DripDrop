@@ -50,6 +50,16 @@ function LogInForm() {
           <Col className="my-auto offset-md-2" md={8}>
             <Container className={`${appStyles.Content} p-4 `}>
             <h1 className="mb-4">Log in</h1>
+
+            {/* Login form with alert messages for any errors in input fields */}
+          <Form onSubmit={handleSubmit}>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            
+            ))}
+            </Form>
             </Container>
           </Col>
         </Row>
