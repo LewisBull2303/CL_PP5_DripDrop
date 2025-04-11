@@ -1,0 +1,120 @@
+/* Colors pallet */
+:root {
+    --dark-turquoise: #5F7470;
+    --light-grey: #B8BDB5;
+    --light: #E0E2DB;
+    --salmon: #F5D5ED;
+  }
+  
+  /* Highlighting of text */
+  ::selection {
+    background-color: rgba(248, 115, 100, 0.4);
+  }
+  
+  .App {
+    font-family: "Inter", sans-serif;
+    color: var(--dark-turquoise);
+    background-color: var(--light);
+    min-height: 100vh;
+  }
+  
+  * {
+    box-sizing: border-box;
+  }
+  
+  .Body {
+    padding-top: 120px;
+  }
+  
+  h3 {
+    font-weight: bold;
+  }
+  
+  .Content {
+    background-color: white;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid white;
+  }
+  
+  /* Style app links */
+  a {
+    color: var(--dark-turquoise) !important;
+    font-weight: bold;
+  }
+  
+  a:hover {
+    text-decoration: none;
+  }
+  
+  a:hover i {
+    color: var(--dark-turquoise);
+  }
+  
+  /* Style app icons */
+  i {
+    color: var(--light-grey);
+    font-size: 1.5rem;
+    padding: 6px;
+    vertical-align: middle;
+  }
+  
+  /* Buttons */
+  .button {
+    background-color: var(--salmon);
+    box-shadow: 1px 1px 5px var(--salmon);
+    border-color: var(--salmon);
+    font-weight: bold;
+    color: var(--dark-turquoise);
+  }
+  
+  .button:hover,
+  .button:focus {
+    background-color: var(--light) !important;
+    color: var(--dark-turquoise) !important;
+    box-shadow: 1px 1px 5px var(--light) !important;
+    border-color: var(--dark-turquoise) !important;
+  }
+  
+  /* Add style to bootstrap alerts */
+  .Alert {
+    margin-bottom: 0;
+    padding: 5px;
+    font-weight: bold;
+  }
+  
+  /* Forms input field */
+  .Input {
+    background: white;
+    border: 1px solid var(--light);
+    box-sizing: border-box;
+    border-radius: 3px;
+    color: var(--dark-turquoise);
+  }
+  
+  .Input:focus {
+    box-shadow: none;
+    border: 1px solid var(--salmon);
+  }
+  
+  .Input::placeholder {
+    font-weight: normal;
+  }
+  
+  .Image {
+    max-height: 40vh;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  
+  /* Like thumb-up icon style on hover */
+  .LikeIcon:hover {
+    transform: rotate(-15deg) scale(1.1);
+    cursor: pointer;
+  }
+  
+  .Line {
+    border-top: 1px solid var(--salmon);
+    margin: 23px auto;
+    width: 70px;
+  }
