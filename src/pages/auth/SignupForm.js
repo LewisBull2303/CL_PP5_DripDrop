@@ -41,4 +41,96 @@ const SignUpForm = () => {
       setErrors(err.response?.data);
     }
   };
-}
+
+  
+  return (
+    <Row className="text-center">
+      <Col className="my-auto offset-md-2" md={8}>
+        <Container className={`${appStyles.Content} p-4 `}>
+          <h1 className="mb-4">Sign up</h1>
+
+          {/* Sign up form with alert messages for any errors in input fields */}
+          <Form onSubmit={handleSubmit}>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="username">
+              <Form.Text id="passwordHelpBlock" muted>
+                Your username must be 1-10 characters long.
+              </Form.Text>
+              <Form.Label className="d-none">Username</Form.Label>
+              <Form.Control
+                className={`${appStyles.Input} text-center`}
+                type="text"
+                placeholder="Your username"
+                name="username"
+                maxLength={10}
+                value={username}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            {errors.password1?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="password1">
+              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Control
+                className={`${appStyles.Input} text-center`}
+                type="password"
+                placeholder="Password"
+                name="password1"
+                value={password1}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            {errors.password2?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="password2">
+              <Form.Label className="d-none">Confirm password</Form.Label>
+              <Form.Control
+                className={`${appStyles.Input} text-center`}
+                type="password"
+                placeholder="Confirm password"
+                name="password2"
+                value={password2}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <PasswordCriteria />
+
+            <Button
+              className={`my-3 ${appStyles.button}`}
+              type="submit"
+              onMouseDown={(e) => e.preventDefault()}
+            >
+              Sign up!
+            </Button>
+
+            <Link className={styles.Link} to="/login">
+              Already a member? Click <span>here </span>to log in.
+            </Link>
+          </Form>
+        </Container>
+      </Col>
+    </Row>
+  );
+};
