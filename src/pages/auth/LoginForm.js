@@ -4,7 +4,3 @@ import axios from "axios";
 import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
 import { setTokenTimestamp } from "../../utils/utils";
 
-function LogInForm() {
-    const setCurrentUser = useSetCurrentUser();
-    useRedirect("loggedIn");
-}
