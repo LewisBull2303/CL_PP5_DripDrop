@@ -27,4 +27,18 @@ const SignUpForm = () => {
           [e.target.name]: e.target.value, // key is an input field name, value is the value entered by the user
         });
       };
+
+        /* 
+    Handles submitted in the form data on signing up
+    Redirects user to login page
+  */
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // prevent page refresh
+    try {
+      await axios.post("/dj-rest-auth/registration/", signUpData);
+      history.push("/login");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
 }
