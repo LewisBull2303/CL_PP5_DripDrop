@@ -14,4 +14,8 @@ function LogInForm() {
       username: "",
       password: "",
     });
+
+    const { username, password } = logInData;
+    const [errors, setErrors] = useState({});
+    const history = useHistory();
 }
