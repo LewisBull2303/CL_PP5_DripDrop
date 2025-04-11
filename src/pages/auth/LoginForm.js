@@ -121,10 +121,14 @@ function LogInForm() {
             >
               Log in!
             </Button>
-
+            <Link className={styles.Link} to="/signup">
+              Don&lsquo;t have an account? Click <span>here </span>to sign up.
+            </Link>
             </Form>
         </Container>
         </Col>
     </Row>
     );
 }
+
+export default LogInForm;
