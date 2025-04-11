@@ -60,18 +60,53 @@ function LogInForm() {
             
             ))}
 
-                <Form.Group controlId="username">
-                    <Form.Label className="d-none">Username</Form.Label>
-                    <Form.Control
-                        className={`${appStyles.Input} text-center`}
-                        type="text"
-                        placeholder="Your username"
-                        name="username"
-                        maxLength={10}
-                        value={username}
-                        onChange={handleChange}
-                    />
-                </Form.Group>
+            <Form.Group controlId="username">
+                <Form.Label className="d-none">Username</Form.Label>
+                <Form.Control
+                    className={`${appStyles.Input} text-center`}
+                    type="text"
+                    placeholder="Your username"
+                    name="username"
+                    maxLength={10}
+                    value={username}
+                    onChange={handleChange}
+                />
+            </Form.Group>
+            {errors.password?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="password">
+              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Control
+                className={`${appStyles.Input} text-center`}
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+              />
+            </Form.Group>
+
+            {errors.password?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="password">
+              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Control
+                className={`${appStyles.Input} text-center`}
+                type="password"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={handleChange}
+              />
+            </Form.Group>
             </Form>
         </Container>
         </Col>
