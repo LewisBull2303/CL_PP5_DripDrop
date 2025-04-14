@@ -38,3 +38,39 @@ function PostCreateForm() {
         [e.target.name]: e.target.value,
       });
     };
+
+    /* 
+    Handles change to the file (image) input field
+  */
+  const handleChangeImage = (e) => {
+    if (e.target.files.length) {
+      URL.revokeObjectURL(image); // for changing image after adding one
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
+
+  /* 
+    Handles the create post form submission
+    Refreshes the user's access token before making a request to create a post
+  */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    formData.append("title", title);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("image", imageInput.current.files[0]);
+
+    try {
+      const { data } = await axiosReq.post("/posts/", formData);
+      history.push(`/posts/${data.id}`);
+    } catch (err) {
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
