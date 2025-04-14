@@ -33,4 +33,35 @@ const NavBar = () => {
         //console.log(err)
       }
     }; 
+
+    /* 
+    Displays current username with its avatar in the navbar
+    With a dropdown option to view user profile or log-out on click
+  */
+  const loggedInNavBar = (
+    <>
+      <NavDropdown
+        title={
+          <div className="exp">
+            <Avatar
+              src={currentUser?.profile_image}
+              height={40}
+              className="exp"
+            />
+            {currentUser?.username}
+          </div>
+        }
+        id="basic-nav-dropdown"
+      >
+        <NavDropdown.Item className={`${styles.Dropdown} text-right`}>
+          <NavLink to={`/profiles/${currentUser?.profile_id}`}>Profile</NavLink>
+        </NavDropdown.Item>
+        <NavDropdown.Item className={`${styles.Dropdown} text-right`}>
+          <NavLink to="/" onClick={handleLogOut}>
+            Log out
+          </NavLink>
+        </NavDropdown.Item>
+      </NavDropdown>
+    </>
+  );
 }
