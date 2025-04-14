@@ -181,3 +181,37 @@ function PostEditForm() {
         <option value="Sci-Fi/Fantasy Fashion">"Sci-Fi/Fantasy Fashion"</option>
         <option value="Rave/Festival Fashion">"Rave/Festival Fashion"</option>
         <option value="Normcore">"Normcore"</option>
+        </Form.Control>
+      </Form.Group>
+
+      <Form.Group>
+        <Form.Label>Description</Form.Label>
+        <Form.Control
+          as="textarea"
+          rows={6}
+          name="description"
+          className={appStyles.Input}
+          value={description}
+          onChange={handleChange}
+          aria-label="post description"
+        />
+      </Form.Group>
+
+      <Button
+        className={`my-3 ${appStyles.button}`}
+        onMouseDown={(e) => e.preventDefault()}
+        type="submit"
+      >
+        Save
+      </Button>
+
+      <Button
+        className={`${appStyles.button} mx-3`}
+        onMouseDown={(e) => e.preventDefault()}
+        onClick={() => history.goBack()}
+      >
+        Cancel
+      </Button>
+    </div>
+  );
+
