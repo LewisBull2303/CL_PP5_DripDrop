@@ -29,4 +29,15 @@ const UserPasswordForm = () => {
       [event.target.name]: event.target.value,
     });
   };
+
+   /*
+    Handles the edit of user password
+  */
+    useEffect(() => {
+        if (currentUser?.profile_id?.toString() !== id) {
+          history.push("/");
+        }
+      }, [currentUser, history, id]);
+    
 }
+
