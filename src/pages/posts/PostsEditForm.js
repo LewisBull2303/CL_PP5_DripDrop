@@ -215,3 +215,49 @@ function PostEditForm() {
     </div>
   );
 
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Row>
+        <Col md={7} lg={8} className="d-none d-md-block p-0 p-md-2">
+          <Container className={appStyles.Content}>{textFields}</Container>
+        </Col>
+        <Col className="py-2 pb-4 p-0 p-md-2" md={5} lg={4}>
+          <Container
+            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+          >
+            <Form.Group className="text-center">
+              <figure>
+                <Image className={appStyles.Image} src={image} alt="your uploaded image" rounded />
+              </figure>
+              <div>
+                <Form.Label
+                  className={`${appStyles.button} ${styles.ButtonChangeImage} btn`}
+                  htmlFor="image-upload"
+                >
+                  Change the image
+                </Form.Label>
+              </div>
+
+              <Form.File
+                id="image-upload"
+                accept="image/*"
+                className="d-none"
+                onChange={handleChangeImage}
+                ref={imageInput}
+              />
+            </Form.Group>
+            {errors.image?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+            <div className="d-md-none">{textFields}</div>
+          </Container>
+        </Col>
+      </Row>
+    </Form>
+  );
+}
+
+export default PostEditForm;
+
