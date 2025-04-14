@@ -57,4 +57,26 @@ const Post = (props) => {
       // console.log(err);
     }
   };
+
+    /*
+    Handles liking of the post by the user
+    Sends a request to the API for a post with a specific id
+    Increments the likes number by 1
+  */
+    const handleLike = async () => {
+        try {
+          const { data } = await axiosRes.post("/likes/", { post: id });
+          setPosts((prevPosts) => ({
+            ...prevPosts,
+            results: prevPosts.results.map((post) => {
+              return post.id === id
+                ? { ...post, likes_number: post.likes_number + 1, like_id: data.id }
+                : post;
+            }),
+          }));
+        } catch (err) {
+          // console.log(err);
+        }
+      };
+    
   
