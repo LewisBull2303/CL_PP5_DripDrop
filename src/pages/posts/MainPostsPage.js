@@ -121,4 +121,62 @@ function MainPostsPage({ message, filter = "" }) {
                 <Badge variant="secondary" pill className={`${styles.Badge}`} onClick={() => setCategory("Normcore")}>Normcore</Badge>
             </Container>
         </Col>
+        <Col className="py-2 p-0 p-lg-2" lg={8}>
+
+        {/* Posts text search bar */}
+        <i className={`fas fa-search ${styles.SearchIcon}`} />
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(e) => e.preventDefault()}
+        >
+          
+          <Form.Control
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search posts"
+            aria-label="search bar"
+          />
+          <i className={`fa-solid fa-eraser ${styles.Clear}`} onClick={() => setQuery("")} />
+        </Form>
+
+        {hasLoaded ? (
+          <>
+            {posts.results.length ? (
+              // InfiniteScroll component handles loading more pages of posts as the user scrolls
+              <InfiniteScroll
+                children={posts.results.map((post) => (
+                  <Post 
+                    key={post.id} 
+                    {...post} 
+                    setPosts={setPosts} 
+                    // truncate post description on the main page to 500 characters
+                    description={post.description.length > 500 ? (post.description.slice(0, 500) + " .....") : post.description} />
+                ))}
+                dataLength={posts.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!posts.next}
+                next={() => fetchMoreData(posts, setPosts)}
+              />
+            ) : (
+              // if no results found, show no results asset with a relevant message
+              <Container className={appStyles.Content}>
+                <Asset src={NoResultsImage} width={20} height={20} message={message} />
+              </Container>
+            )}
+          </>
+        ) : (
+          // display a loading spinner if the posts haven't been loaded yet
+          <Container className={appStyles.Content}>
+            <Asset spinner />
+          </Container>
+        )}
+
+        </Col>
+      </Row>
+    </Container>
+  );
 }
+
+export default MainPostsPage;
