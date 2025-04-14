@@ -56,5 +56,19 @@ const UserPasswordForm = () => {
       setErrors(err.response?.data);
     }
   };
+
+  return (
+    <Row>
+        <Col className="py-2 mx-auto text-center font-weight-bold" md={8}>
+        {showAlert && (
+          <FeedbackMsg
+            variant="info"
+            message="Password has been changed. Taking you back to your profile's page..."
+          />
+        )}
+        
+        </Col>
+    </Row>
+  )
 }
 
