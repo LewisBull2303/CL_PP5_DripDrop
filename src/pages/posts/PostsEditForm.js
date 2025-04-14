@@ -62,3 +62,15 @@ function PostEditForm() {
         });
       };
     
+      /* 
+    Handles change to the file (image) input field
+  */
+  const handleChangeImage = (e) => {
+    if (e.target.files.length) {
+      URL.revokeObjectURL(image); // for changing image after adding one
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(e.target.files[0]),
+      });
+    }
+  };
