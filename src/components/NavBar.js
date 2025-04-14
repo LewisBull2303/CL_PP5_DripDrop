@@ -64,4 +64,27 @@ const NavBar = () => {
       </NavDropdown>
     </>
   );
+
+  /* 
+    Navbar visble to user not logged-in
+    With options to create a new account or log in to an existing one
+  */
+    const loggedOutNavBar = (
+        <>
+          <NavLink
+            className={styles.NavLink}
+            activeClassName={styles.Active}
+            to="/signup"
+          >
+            <i className="fa-solid fa-user-plus"></i>Sign up
+          </NavLink>
+          <NavLink
+            className={styles.NavLink}
+            activeClassName={styles.Active}
+            to="/login"
+          >
+            <i className="fa-solid fa-right-to-bracket"></i>Log in
+          </NavLink>
+        </>
+      );
 }
