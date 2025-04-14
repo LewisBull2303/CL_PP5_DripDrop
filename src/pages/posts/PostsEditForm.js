@@ -51,3 +51,14 @@ function PostEditForm() {
 
     handleMount();
   }, [history, id]);
+
+  /* 
+    Handles changes to the create form input fields
+  */
+    const handleChange = (e) => {
+        setPostData({
+          ...postData,
+          [e.target.name]: e.target.value,
+        });
+      };
+    
