@@ -39,5 +39,22 @@ const UserPasswordForm = () => {
         }
       }, [currentUser, history, id]);
     
+    /* 
+    Handles the new password submission
+    Displays a feedback message to the user on successful password change
+    Redirects the user to the profile page after a short delay
+    */
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axiosRes.post("/dj-rest-auth/password/change/", userData);
+      setShowAlert(true);
+      setTimeout(function () {
+        history.goBack();
+      }, 2500);
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
 }
 
