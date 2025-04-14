@@ -66,7 +66,25 @@ const UserPasswordForm = () => {
             message="Password has been changed. Taking you back to your profile's page..."
           />
         )}
-        
+         <Container className={appStyles.Content}>
+          <Form onSubmit={handleSubmit}>
+            <Form.Group>
+              <Form.Label>New password</Form.Label>
+              <Form.Control
+                placeholder="type your new password"
+                type="password"
+                value={new_password1}
+                onChange={handleChange}
+                name="new_password1"
+                className={`${appStyles.Input} text-center`}
+                aria-label="new password"
+              />
+            </Form.Group>
+            {errors?.new_password1?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
         </Col>
     </Row>
   )
