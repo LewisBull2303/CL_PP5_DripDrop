@@ -78,5 +78,26 @@ const Post = (props) => {
           // console.log(err);
         }
       };
+
+      /*
+    Handles unliking of the post already liked by the user
+    Sends a request to the API for a post with a specific id
+    Decrements the likes number by 1
+  */
+  const handleUnlike = async () => {
+    try {
+      await axiosRes.delete(`/likes/${like_id}/`);
+      setPosts((prevPosts) => ({
+        ...prevPosts,
+        results: prevPosts.results.map((post) => {
+          return post.id === id
+            ? { ...post, likes_number: post.likes_number - 1, like_id: null }
+            : post;
+        }),
+      }));
+    } catch (err) {
+      // console.log(err);
+    }
+  };
     
   
