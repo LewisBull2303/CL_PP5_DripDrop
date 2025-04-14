@@ -19,4 +19,14 @@ const UserPasswordForm = () => {
     const { new_password1, new_password2 } = userData;
     const [errors, setErrors] = useState({});
     const [showAlert, setShowAlert] = useState(false);
+
+    /* 
+    Handles changes to the input fields
+    */
+  const handleChange = (event) => {
+    setUserData({
+      ...userData,
+      [event.target.name]: event.target.value,
+    });
+  };
 }
