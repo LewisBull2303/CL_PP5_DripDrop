@@ -50,3 +50,48 @@ export const DropdownMenu = ({ handleEdit, handleDelete }) => {
       </Dropdown>
     );
   };
+
+/*
+  Dropdown menu on the profile page
+  displaying icons for edit profile & change password
+  Makes a request to fetch profile data based on the profile id
+*/
+export function ProfileEditDropdown({ id }) {
+    const history = useHistory();
+    return (
+      <Dropdown className="ml-auto" drop="left">
+        <Dropdown.Toggle as={DropdownDots} />
+  
+        <Dropdown.Menu
+          className="text-center"
+          popperConfig={{ strategy: "fixed" }}
+        >
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Edit profile</Tooltip>}
+          >
+            <Dropdown.Item
+              className={styles.DropdownItem}
+              onClick={() => history.push(`/profiles/${id}/edit`)}
+              aria-label="edit-profile"
+            >
+              <i className="fa-solid fa-pen"></i>
+            </Dropdown.Item>
+          </OverlayTrigger>
+  
+          <OverlayTrigger
+            placement="top"
+            overlay={<Tooltip>Change password</Tooltip>}
+          >
+            <Dropdown.Item
+              className={styles.DropdownItem}
+              onClick={() => history.push(`/profiles/${id}/edit/password`)}
+              aria-label="change-password"
+            >
+              <i className="fas fa-key" />
+            </Dropdown.Item>
+          </OverlayTrigger>
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  }
