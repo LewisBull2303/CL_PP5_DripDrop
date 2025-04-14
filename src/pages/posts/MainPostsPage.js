@@ -22,4 +22,40 @@ function MainPostsPage({ message, filter = "" }) {
     const { pathname } = useLocation();
     const currentUser = useCurrentUser();
     const [query, setQuery] = useState("");
+
+    /*
+    Handles API request using the filters for each of pages
+    to fetch relevant posts to the filter
+    Displays all the posts, just posts by the profiles followed, 
+    just the liked posts or posts in a specific category
+    Shows a loading spinner when required
+  */
+  useEffect(() => {
+    const fetchPosts = async () => {
+        try {
+            const { data } = await axiosReq.get(
+                `/posts/?${filter}search=${query}${
+                    category !== null ? `&category=${category}` : ""
+                }`
+            );
+            setPosts(data);
+            setHasLoaded(true);
+        } catch (err) {
+          // console.log(err)
+        }
+    };
+    setHasLoaded(false);
+    /*
+      Delays making an API request and fetching posts of 1 second
+      instead of on each key stroke
+    */
+    const timer = setTimeout(() => {
+      fetchPosts();
+    }, 1000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [filter, query, pathname, currentUser, category]);
+
 }
