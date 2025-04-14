@@ -74,3 +74,45 @@ function PostCreateForm() {
       }
     }
   };
+
+  /*
+    Hold input fields and buttons to create and cancel
+  */
+    const textFields = (
+        <div className="text-center">
+          <Form.Group>
+            <Form.Label>Title</Form.Label>
+    
+            {errors.title?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+    
+            <Form.Control
+              type="text"
+              name="title"
+              className={appStyles.Input}
+              value={title}
+              onChange={handleChange}
+              aria-label="title"
+            />
+          </Form.Group>
+    
+          <Form.Group>
+            <Form.Label>Category</Form.Label>
+    
+            {errors.category?.map((message, idx) => (
+              <Alert variant="warning" className={appStyles.Alert} key={idx}>
+                {message}
+              </Alert>
+            ))}
+    
+            <Form.Control
+              as="select"
+              name="category"
+              className={appStyles.Input}
+              value={category}
+              onChange={handleChange}
+              aria-label="category"
+            >
