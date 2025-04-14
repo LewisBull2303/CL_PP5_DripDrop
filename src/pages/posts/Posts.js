@@ -10,3 +10,21 @@ import Like from "../../assets/like.png";
 import Unlike from "../../assets/unlike.png";
 import { DropdownMenu } from "../../components/DropdownMenu";
 import FeedbackMsg from "../../components/FeedbackMsg";
+
+const Post = (props) => {
+    const {
+      id,
+      owner,
+      profile_id,
+      profile_image,
+      title,
+      description,
+      category,
+      comments_number,
+      likes_number,
+      like_id,
+      image,
+      updated_on,
+      postPage,
+      setPosts,
+    } = props;
