@@ -74,3 +74,31 @@ function PostEditForm() {
       });
     }
   };
+
+  /* 
+    Handles the edit post form submission
+    Redirects the user to the post page
+  */
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+    
+        formData.append("title", title);
+        formData.append("category", category);
+        formData.append("description", description);
+    
+        if (imageInput?.current?.files[0]) {
+          formData.append("image", imageInput.current.files[0]);
+        }
+    
+        try {
+          await axiosReq.put(`/posts/${id}/`, formData);
+          history.push(`/posts/${id}`);
+        } catch (err) {
+          // console.log(err);
+          if (err.response?.status !== 401) {
+            setErrors(err.response?.data);
+          }
+        }
+      };
+    
