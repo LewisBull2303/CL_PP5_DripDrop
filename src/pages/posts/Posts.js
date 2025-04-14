@@ -98,6 +98,34 @@ const Post = (props) => {
     } catch (err) {
       // console.log(err);
     }
+    
   };
+
+  return (
+    <Card className={styles.Post}>
+      {showAlert && (
+        <FeedbackMsg variant="info" message="Your post has been deleted" />
+      )}
+      <Card.Body className={styles.Container}>
+        <Link to={`/profiles/${profile_id}`}>
+          <Avatar
+            src={profile_image}
+            height={50}
+            className={styles.AvatarGrid}
+          />
+        </Link>
+        <Link to={`/profiles/${profile_id}`} className={styles.Username}>
+          {owner}
+        </Link>
+        <div className={styles.UpdatedOn}>{updated_on}</div>
+
+        {/* Display the edit dropdown menu for owner of the post and if the
+        postPage prop exists */}
+        <div className={styles.EditIcon}>
+          {is_owner && postPage && (
+            <DropdownMenu handleEdit={handleEdit} handleDelete={handleDelete} />
+          )}
+        </div>
+      </Card.Body>
     
   
