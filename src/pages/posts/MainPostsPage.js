@@ -13,3 +13,13 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import PopularProfiles from "../profiles/PopularProfiles";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+
+function MainPostsPage({ message, filter = "" }) {
+    const [posts, setPosts] = useState({ results: [] });
+    const [category, setCategory] = useState(null);
+    const [hasLoaded, setHasLoaded] = useState(false);
+    // detect the url change between home, feed & liked pages
+    const { pathname } = useLocation();
+    const currentUser = useCurrentUser();
+    const [query, setQuery] = useState("");
+}
