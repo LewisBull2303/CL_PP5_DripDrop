@@ -28,3 +28,16 @@ const Post = (props) => {
       postPage,
       setPosts,
     } = props;
+
+    const currentUser = useCurrentUser();
+    const is_owner = currentUser?.username === owner;
+    const history = useHistory();
+    const [showAlert, setShowAlert] = useState(false);
+  
+    /*
+      Handles editing of the post
+    */
+    const handleEdit = () => {
+      history.push(`/posts/${id}/edit`);
+    };
+  
