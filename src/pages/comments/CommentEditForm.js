@@ -13,4 +13,35 @@ function CommentEditForm(props) {
     const handleChange = (e) => {
       setFormContent(e.target.value);
     };
+
+     /* 
+    Handles the edit comment form submission
+    Updates displayed comment with date set to 'now'
+    Displays confirmation alert to the user 
+  */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axiosRes.put(`/comments/${id}/`, {
+        content: formContent.trim(),
+      });
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: prevComments.results.map((comment) => {
+          return comment.id === id
+            ? {
+                ...comment,
+                content: formContent.trim(),
+                updated_on: "now",
+              }
+            : comment;
+        }),
+      }));
+      setShowEditForm(false);
+      setShowAlert(true);
+    } catch (err) {
+      //console.log(err)
+    }
+  };
+
 }
