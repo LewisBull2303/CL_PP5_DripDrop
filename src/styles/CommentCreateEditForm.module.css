@@ -1,0 +1,38 @@
+.Form {
+    color: var(--dark-slate-grey);
+    padding-left: 20px;
+    margin-bottom: 10px;
+    border-radius: 35px;
+    border-top-left-radius: 35px !important;
+    border-bottom-left-radius: 35px !important;
+  }
+  
+  .Form:focus {
+    box-shadow: none;
+    border: 1px solid var(--salmon);
+  }
+  
+  .Line {
+    background: var(--salmon);
+    margin: 20px 0 25px;
+  }
+  
+  /* Add, update & cancel comment buttons */
+  .CommentsButton {
+    background-color: var(--salmon);
+    color: var(--dark-slate-grey);
+    box-shadow: 1px 1px 5px var(--salmon);
+    border-radius: 35px;
+    border-color: var(--salmon);
+    font-weight: bold;
+    margin: 0 10px 5px 0;
+    padding: 3px 15px;
+  }
+  
+  .CommentsButton:hover,
+  .CommentsButton:focus {
+    background-color: var(--light) !important;
+    color: var(--dark-slate-grey) !important;
+    box-shadow: 1px 1px 5px var(--light) !important;
+    border-color: var(--dark-slate-grey) !important;
+  }
