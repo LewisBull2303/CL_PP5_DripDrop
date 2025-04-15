@@ -44,4 +44,37 @@ function CommentCreateForm(props) {
       // console.log(err);
     }
   };
-}  
+  return (
+    <Form className="mt-2 text-center" onSubmit={handleSubmit}>
+      <Form.Group>
+        <InputGroup>
+          <p className="my-2">
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profileImage} />
+            </Link>
+          </p>
+          <Form.Control
+            className={styles.Form}
+            placeholder="share what you think..."
+            aria-label="comment input box"
+            as="textarea"
+            value={content}
+            onChange={handleChange}
+            rows={2}
+          />
+        </InputGroup>
+      </Form.Group>
+
+      <Button
+        className={styles.CommentsButton}
+        onMouseDown={(e) => e.preventDefault()}
+        type="submit"
+      >
+        Add
+      </Button>
+      <hr className={styles.Line} />
+    </Form>
+  );
+}
+
+export default CommentCreateForm;
