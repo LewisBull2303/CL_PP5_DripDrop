@@ -134,3 +134,5 @@ const SignUpForm = () => {
     </Row>
   );
 };
+
+export default SignUpForm;
