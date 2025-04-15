@@ -8,3 +8,16 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 import CommentEditForm from "./CommentEditForm";
 import FeedbackMsg from "../../components/FeedbackMsg";
+
+const Comment = (props) => {
+    const {
+      profile_id,
+      profile_image,
+      owner,
+      updated_on,
+      content,
+      id,
+      setPost,
+      setComments,
+    } = props;
+}
