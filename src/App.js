@@ -1,7 +1,7 @@
 import styles from "./App.module.css";
 import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
-import { Route, Switch } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Landing from "./components/Landing";
 import "./api/axiosDefaults";
 import SignUpForm from "./pages/auth/SignUpForm";
@@ -26,14 +26,14 @@ function App() {
       <Container className={styles.Body}>
 
       {!currentUser ? (
-        <Switch>
+        <Routes>
           <Route exact path="/" render={() => <Landing />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route render={() => <Landing />} />
-        </Switch>
+        </Routes>
       ) : (
-        <Switch>
+        <Routes>
           <Route
             exact path="/"
             render={() => (
@@ -72,7 +72,7 @@ function App() {
           <Route path="*">
             <PageNotFound />
           </Route>
-        </Switch>
+        </Routes>
       )}
       </Container>
     </div>
