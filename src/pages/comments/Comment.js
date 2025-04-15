@@ -58,4 +58,50 @@ const Comment = (props) => {
       }, 2500);
     };
   
-}
+    return isDeleted ? (
+        <FeedbackMsg variant="info" message="Comment has been deleted" />
+      ) : (
+        <div>
+          {showAlert && (
+            <FeedbackMsg variant="info" message="Comment has been updated" />
+          )}
+    
+          <Media>
+            <Link to={`/profiles/${profile_id}`} className="my-3">
+              <Avatar src={profile_image} />
+            </Link>
+            <Media.Body className="align-self-center mb-4">
+              <div className={styles.CommentBox}>
+                <span className={styles.OwnerName}>{owner}</span>
+                <span className={styles.Date}> | {updated_on}</span>
+                <span className={styles.DropdownDots}>
+                  {/* Display the dropdown menu for owner of the comment
+                      to either edit or delete it */}
+                  {is_owner && !showEditForm && (
+                    <DropdownMenu
+                      handleEdit={() => setShowEditForm(true)}
+                      handleDelete={handleDelete}
+                    />
+                  )}
+                </span>
+                {showEditForm ? (
+                  <CommentEditForm
+                    id={id}
+                    profile_id={profile_id}
+                    content={content}
+                    profileImage={profile_image}
+                    setComments={setComments}
+                    setShowEditForm={setShowEditForm}
+                    setShowAlert={setShowAlert}
+                  />
+                ) : (
+                  <p className="pr-2 pt-2">{content}</p>
+                )}
+              </div>
+            </Media.Body>
+          </Media>
+        </div>
+      );
+};
+    
+export default Comment;
