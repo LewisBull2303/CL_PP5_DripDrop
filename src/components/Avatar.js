@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/avatar.component.css";
+import styles from "../styles/Avatar.module.css";
 
 /*
   Avatar component with default height prop
