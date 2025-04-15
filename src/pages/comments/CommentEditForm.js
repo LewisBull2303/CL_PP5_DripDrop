@@ -44,4 +44,41 @@ function CommentEditForm(props) {
     }
   };
 
+  return (
+    <Form className="mt-2 text-center" onSubmit={handleSubmit}>
+      <Form.Group className="pr-1">
+        <Form.Control
+          className={styles.Form}
+          as="textarea"
+          value={formContent}
+          onChange={handleChange}
+          rows={2}
+        />
+      </Form.Group>
+
+      <div className="text-right">
+        <Button
+          className={styles.CommentsButton}
+          disabled={!content.trim()}
+          onMouseDown={(e) => e.preventDefault()}
+          type="submit"
+        >
+          Update
+        </Button>
+        <Button
+          className={styles.CommentsButton}
+          onClick={() => {
+            setShowEditForm(false);
+            setShowAlert(false);
+          }}
+          onMouseDown={(e) => e.preventDefault()}
+          type="button"
+        >
+          Cancel
+        </Button>
+      </div>
+    </Form>
+  );
 }
+
+export default CommentEditForm;
