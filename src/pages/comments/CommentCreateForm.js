@@ -15,4 +15,33 @@ function CommentCreateForm(props) {
     const handleChange = (e) => {
       setContent(e.target.value);
     };
+
+    /* 
+    Handles the submission of the comment create input field
+    Increments the number of comments by 1
+  */
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axiosRes.post("/comments/", {
+        content,
+        post,
+      });
+      setComments((prevComments) => ({
+        ...prevComments,
+        results: [data, ...prevComments.results],
+      }));
+      setPost((prevPost) => ({
+        results: [
+          {
+            ...prevPost.results[0],
+            comments_number: prevPost.results[0].comments_number + 1,
+          },
+        ],
+      }));
+      setContent("");
+    } catch (err) {
+      // console.log(err);
+    }
+  };
 }  
