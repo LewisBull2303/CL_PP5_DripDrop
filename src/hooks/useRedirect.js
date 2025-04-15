@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 export const useRedirect = (userAuthStatus) => {
-    const history = useHistory();
+    const history = useNavigate();
     /*
     Checks if the user is logged in
     if yes, refreshes the access token

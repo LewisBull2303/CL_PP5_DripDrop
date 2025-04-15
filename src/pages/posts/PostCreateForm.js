@@ -12,7 +12,7 @@ import Upload from "../../assets/upload-image.png";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { axiosReq } from "../../api/axiosDefaults";
 
 function PostCreateForm() {
@@ -27,7 +27,7 @@ function PostCreateForm() {
   
     const { title, category, description, image } = postData;
     const imageInput = useRef(null);
-    const history = useHistory();
+    const history = useNavigate();
   
     /* 
       Handles changes to the create form input fields

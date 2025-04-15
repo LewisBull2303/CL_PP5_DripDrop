@@ -1,7 +1,7 @@
 import React from "react";
 import { Dropdown, Tooltip, OverlayTrigger } from "react-bootstrap";
 import styles from "../styles/DropdownMenu.module.css";
-import { useHistory } from "react-router";
+import { useNavigate } from "react-router";
 
 const DropdownDots = React.forwardRef(({ onClick }, ref) => (
     <i
@@ -57,7 +57,7 @@ export const DropdownMenu = ({ handleEdit, handleDelete }) => {
   Makes a request to fetch profile data based on the profile id
 */
 export function ProfileEditDropdown({ id }) {
-    const history = useHistory();
+    const history = useNavigate();
     return (
       <Dropdown className="ml-auto" drop="left">
         <Dropdown.Toggle as={DropdownDots} />

@@ -3,7 +3,7 @@ import styles from "../../styles/Post.module.css";
 import appStyles from "../../App.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Badge, Card, OverlayTrigger, Tooltip } from "react-bootstrap";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import Like from "../../assets/like.png";
@@ -31,7 +31,7 @@ const Post = (props) => {
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
-  const history = useHistory();
+  const history = useNavigate();
   const [showAlert, setShowAlert] = useState(false);
 
   /*
