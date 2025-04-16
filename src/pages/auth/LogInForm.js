@@ -32,7 +32,7 @@ function LogInForm() {
   };
 
   /* 
-    Handles submitted in the form data on logging in
+    Handles submitted form data on logging in
     Redirect user to home page
   */
   const handleSubmit = async (e) => {
@@ -43,8 +43,20 @@ function LogInForm() {
       setTokenTimestamp(data);
       history.push("/");
     } catch (err) {
-      setErrors(err.response?.data);
+      setErrors(err.response?.data || {});
     }
+  };
+
+  // 🔧 Helper to safely render field-specific errors
+  const renderFieldErrors = (field) => {
+    return (
+      Array.isArray(errors[field]) &&
+      errors[field].map((message, idx) => (
+        <Alert variant="warning" className={appStyles.Alert} key={idx}>
+          {message}
+        </Alert>
+      ))
+    );
   };
 
   return (
@@ -55,11 +67,7 @@ function LogInForm() {
 
           {/* Login form with alert messages for any errors in input fields */}
           <Form onSubmit={handleSubmit}>
-            {errors.username?.map((message, idx) => (
-              <Alert variant="warning" className={appStyles.Alert} key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {renderFieldErrors("username")}
 
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
@@ -74,11 +82,7 @@ function LogInForm() {
               />
             </Form.Group>
 
-            {errors.password?.map((message, idx) => (
-              <Alert variant="warning" className={appStyles.Alert} key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {renderFieldErrors("password")}
 
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
@@ -92,11 +96,7 @@ function LogInForm() {
               />
             </Form.Group>
 
-            {errors.non_field_errors?.map((message, idx) => (
-              <Alert variant="warning" className={appStyles.Alert} key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {renderFieldErrors("non_field_errors")}
 
             <Button
               className={`my-3 ${appStyles.button}`}
