@@ -1,10 +1,9 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
 export const useRedirect = (userAuthStatus) => {
   const history = useNavigate();
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const handleMount = async () => {
@@ -17,13 +16,9 @@ export const useRedirect = (userAuthStatus) => {
         if (userAuthStatus === "loggedOut") {
           history("/");
         }
-      } finally {
-        setIsLoading(false);
       }
     };
 
     handleMount();
   }, [history, userAuthStatus]);
-
-  return isLoading;
 };
