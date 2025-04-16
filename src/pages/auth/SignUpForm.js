@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../../styles/LogInSignupForm.module.css";
+import styles from "../../styles/LogInSignUpForm.module.css";
 import appStyles from "../../App.module.css";
 import { Alert, Form, Button, Col, Row, Container } from "react-bootstrap";
 import axios from "axios";
@@ -21,14 +21,14 @@ const SignUpForm = () => {
   /* 
     Handles changes to any of the input fields
   */
-    const handleChange = (e) => {
-        setSignUpData({
-          ...signUpData,
-          [e.target.name]: e.target.value, // key is an input field name, value is the value entered by the user
-        });
-      };
+  const handleChange = (e) => {
+    setSignUpData({
+      ...signUpData,
+      [e.target.name]: e.target.value, // key is an input field name, value is the value entered by the user
+    });
+  };
 
-        /* 
+  /* 
     Handles submitted in the form data on signing up
     Redirects user to login page
   */
@@ -42,7 +42,6 @@ const SignUpForm = () => {
     }
   };
 
-  
   return (
     <Row className="text-center">
       <Col className="my-auto offset-md-2" md={8}>
