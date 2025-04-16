@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import styles from "../../styles/LogInSignupForm.module.css"
+import styles from "../../styles/LogInSignupForm.module.css";
 import appStyles from "../../App.module.css";
 import { Alert, Form, Button, Col, Row, Container } from "react-bootstrap";
 import axios from "axios";
@@ -19,28 +19,33 @@ const SignUpForm = () => {
   const [errors, setErrors] = useState({});
   const history = useNavigate();
 
-  /* 
-    Handles changes to any of the input fields
-  */
   const handleChange = (e) => {
     setSignUpData({
       ...signUpData,
-      [e.target.name]: e.target.value, // key is an input field name, value is the value entered by the user
+      [e.target.name]: e.target.value,
     });
   };
 
-  /* 
-    Handles submitted in the form data on signing up
-    Redirects user to login page
-  */
   const handleSubmit = async (e) => {
-    e.preventDefault(); // prevent page refresh
+    e.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/login");
+      history("/login");
     } catch (err) {
-      setErrors(err.response?.data);
+      setErrors(err.response?.data || {});
     }
+  };
+
+  // 🔧 Helper to safely render field-specific errors
+  const renderFieldErrors = (field) => {
+    return (
+      Array.isArray(errors[field]) &&
+      errors[field].map((message, idx) => (
+        <Alert variant="warning" className={appStyles.Alert} key={idx}>
+          {message}
+        </Alert>
+      ))
+    );
   };
 
   if (isLoading) {
@@ -61,13 +66,8 @@ const SignUpForm = () => {
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className="mb-4">Sign up</h1>
 
-          {/* Sign up form with alert messages for any errors in input fields */}
           <Form onSubmit={handleSubmit}>
-            {errors.username?.map((message, idx) => (
-              <Alert variant="warning" className={appStyles.Alert} key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {renderFieldErrors("username")}
 
             <Form.Group controlId="username">
               <Form.Text id="passwordHelpBlock" muted>
@@ -85,11 +85,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
 
-            {errors.password1?.map((message, idx) => (
-              <Alert variant="warning" className={appStyles.Alert} key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {renderFieldErrors("password1")}
 
             <Form.Group controlId="password1">
               <Form.Label className="d-none">Password</Form.Label>
@@ -103,11 +99,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
 
-            {errors.password2?.map((message, idx) => (
-              <Alert variant="warning" className={appStyles.Alert} key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {renderFieldErrors("password2")}
 
             <Form.Group controlId="password2">
               <Form.Label className="d-none">Confirm password</Form.Label>
@@ -121,11 +113,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
 
-            {errors.non_field_errors?.map((message, idx) => (
-              <Alert variant="warning" className={appStyles.Alert} key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {renderFieldErrors("non_field_errors")}
 
             <PasswordCriteria />
 
