@@ -73,14 +73,12 @@ const NavBar = () => {
         <>
           <NavLink
             className={styles.NavLink}
-            activeClassName={styles.Active}
             to="/signup"
           >
             <i className="fa-solid fa-user-plus"></i>Sign up
           </NavLink>
           <NavLink
             className={styles.NavLink}
-            activeClassName={styles.Active}
             to="/login"
           >
             <i className="fa-solid fa-right-to-bracket"></i>Log in
@@ -111,7 +109,6 @@ const NavBar = () => {
               <Nav className="ml-auto text-right">
                 <NavLink
                   className={styles.NavLink}
-                  activeClassName={styles.Active}
                   to="/"
                 >
                   <i className="fa-solid fa-house"></i>Home
