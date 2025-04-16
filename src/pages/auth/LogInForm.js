@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "../../styles/LogInSignupForm.module.css";
+import { Link, useHistory } from "react-router-dom";
+import styles from "../../styles/LogInSignUpForm.module.css";
 import appStyles from "../../App.module.css";
 import { Alert, Form, Button, Col, Row, Container } from "react-bootstrap";
 import axios from "axios";
@@ -19,7 +19,7 @@ function LogInForm() {
 
   const { username, password } = logInData;
   const [errors, setErrors] = useState({});
-  const history = useNavigate();
+  const history = useHistory();
 
   /* 
     Handles changes to any of the input fields
