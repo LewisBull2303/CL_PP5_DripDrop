@@ -10,7 +10,6 @@ import { useRedirect } from "../../hooks/useRedirect";
 const SignUpForm = () => {
   const isLoading = useRedirect("loggedIn");
 
-  if (isLoading) return null;
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
@@ -43,6 +42,18 @@ const SignUpForm = () => {
       setErrors(err.response?.data);
     }
   };
+
+  if (isLoading) {
+    return (
+      <Row className="text-center">
+        <Col className="my-auto offset-md-2" md={8}>
+          <Container className={`${appStyles.Content} p-4`}>
+            <h1>Loading...</h1>
+          </Container>
+        </Col>
+      </Row>
+    );
+  }
 
   return (
     <Row className="text-center">
