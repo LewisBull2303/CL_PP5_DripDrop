@@ -27,15 +27,15 @@ function App() {
 
       {!currentUser ? (
         <Routes>
-          <Route exact path="/" element={<Landing />} />
-          <Route exact path="/signup" element={<SignUpForm />} />
-          <Route exact path="/login" element={ <LogInForm />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup" element={<SignUpForm />} />
+          <Route path="/login" element={ <LogInForm />} />
           <Route element={<Landing />} />
         </Routes>
       ) : (
         <Routes>
           <Route
-            exact path="/"
+            path="/"
             element={(
               <MainPostsPage 
                 message="No results found" />
@@ -43,7 +43,7 @@ function App() {
           />
           {/* Feed route */}
           <Route
-            exact path="/feed"
+            path="/feed"
             element={(
               <MainPostsPage
                 message="No results found. Adjust the search keyword or follow a user."
@@ -53,7 +53,7 @@ function App() {
           />
           {/* Like posts route */}
           <Route
-            exact path="/liked"
+            path="/liked"
             element={(
               <MainPostsPage
                 message="No results found. Adjust the search keyword or like a post."
@@ -62,12 +62,12 @@ function App() {
             )}
           />
 
-          <Route exact path="/posts/create" element={<PostCreateForm />} />
-          <Route exact path="/posts/:id" element={<PostPage />} />
-          <Route exact path="/posts/:id/edit" element={<PostEditForm />} />
-          <Route exact path="/profiles/:id" element={<ProfilePage />} />
-          <Route exact path="/profiles/:id/edit" element={<ProfileEditForm />}/>
-          <Route exact path="/profiles/:id/edit/password" element={<UserPasswordForm />} />
+          <Route path="/posts/create" element={<PostCreateForm />} />
+          <Route path="/posts/:id" element={<PostPage />} />
+          <Route path="/posts/:id/edit" element={<PostEditForm />} />
+          <Route path="/profiles/:id" element={<ProfilePage />} />
+          <Route path="/profiles/:id/edit" element={<ProfileEditForm />}/>
+          <Route path="/profiles/:id/edit/password" element={<UserPasswordForm />} />
           <Route element={<PageNotFound />} />
           <Route path="*">
             <PageNotFound />
