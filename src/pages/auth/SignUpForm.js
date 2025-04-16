@@ -8,7 +8,9 @@ import PasswordCriteria from "../../components/PasswordCriteria";
 import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
-  useRedirect("loggedIn");
+  const isLoading = useRedirect("loggedIn");
+
+  if (isLoading) return null;
   const [signUpData, setSignUpData] = useState({
     username: "",
     password1: "",
