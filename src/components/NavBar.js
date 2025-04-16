@@ -9,7 +9,7 @@ import {
 } from "../contexts/CurrentUserContext";
 import Avatar from "./Avatar";
 import axios from "axios";
-import useClickOustideToggle from "../hooks/useClickOutsideToggle";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
