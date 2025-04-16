@@ -14,7 +14,7 @@ const PasswordCriteria = () => {
         placement="bottom"
         overlay={
           <Popover id="popover-positioned-bottom">
-            <Popover.Content>
+            <Popover.Body>
               <i className="fa-solid fa-check"></i> At least 8 characters
               <br />
               <i className="fa-solid fa-check"></i> Can’t be entirely numeric
@@ -26,7 +26,7 @@ const PasswordCriteria = () => {
               other personal information.
               <br />
               <i className="fa-solid fa-check"></i> Passwords must match
-            </Popover.Content>
+            </Popover.Body>
           </Popover>
         }
       >
