@@ -10,7 +10,6 @@ import { setTokenTimestamp } from "../../utils/utils";
 
 function LogInForm() {
   const setCurrentUser = useSetCurrentUser();
-  const navigate = useNavigate();
   useRedirect("loggedIn");
 
   const [logInData, setLogInData] = useState({
@@ -20,7 +19,7 @@ function LogInForm() {
 
   const { username, password } = logInData;
   const [errors, setErrors] = useState({});
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   /* 
     Handles changes to any of the input fields
@@ -36,17 +35,21 @@ function LogInForm() {
     Handles submitted form data on logging in
     Redirect user to home page
   */
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const { data } = await axios.post("/dj-rest-auth/login/", logInData);
-      setCurrentUser(data.user);
-      setTokenTimestamp(data);
-      navigate("/");
-    } catch (err) {
-      setErrors(err.response?.data || {});
-    }
-  };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+        const { data } = await axios.post("/dj-rest-auth/login/", logInData);
+        setCurrentUser(data.user);
+        setTokenTimestamp(data);
+    
+        // Wait until state is updated before navigating
+        setTimeout(() => {
+          navigate("/"); // Navigate after state change
+        }, 100); // Adding a small delay
+      } catch (err) {
+        setErrors(err.response?.data || {});
+      }
+    };
 
   // 🔧 Helper to safely render field-specific errors
   const renderFieldErrors = (field) => {
