@@ -9,9 +9,9 @@ import { setTokenTimestamp } from "../../utils/utils";
 
 function LogInForm() {
   const setCurrentUser = useSetCurrentUser();
-  const { currentUser } = useCurrentUser(); // Get the current user from context
+  const { currentUser } = useCurrentUser() || {}; // Fallback to empty object if context is null
   const navigate = useNavigate();
-  
+
   const [logInData, setLogInData] = useState({
     username: "",
     password: "",
@@ -42,7 +42,6 @@ function LogInForm() {
       });
       setCurrentUser(data.user); // Update the global user state
       setTokenTimestamp(data);   // Store token timestamps or perform any other logic
-
     } catch (err) {
       setErrors(err.response?.data || {});
     }
