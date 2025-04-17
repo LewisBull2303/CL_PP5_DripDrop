@@ -44,7 +44,7 @@ function LogInForm() {
     
         // Wait until state is updated before navigating
         setTimeout(() => {
-          navigate("/"); // Navigate after state change
+          navigate("/feed"); // Navigate after state change
         }, 100); // Adding a small delay
       } catch (err) {
         setErrors(err.response?.data || {});
