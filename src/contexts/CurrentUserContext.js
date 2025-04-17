@@ -24,11 +24,12 @@ export const CurrentUserProvider = ({ children }) => {
       console.log("WORKING CORRECTLY 1")
       setCurrentUser(data);
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
   };
 
   useEffect(() => {
+    console.log("")
     handleMount();
   }, []);
 
@@ -81,6 +82,10 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     );
+
+    // **Temporary eject of interceptors for debugging**
+    axiosRes.interceptors.request.eject();
+    axiosRes.interceptors.response.eject();
   }, [history]);
 
   return (
