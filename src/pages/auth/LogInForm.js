@@ -23,7 +23,7 @@ function LogInForm() {
   // UseEffect to handle navigation once user is logged in
   useEffect(() => {
     if (currentUser) {
-      navigate("/signup"); // Redirect to /feed once user is authenticated
+      navigate("/");
     }
   }, [currentUser, navigate]); // Dependencies: re-run effect when currentUser changes
 
