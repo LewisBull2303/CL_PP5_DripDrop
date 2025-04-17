@@ -39,14 +39,13 @@ function LogInForm() {
       e.preventDefault();
       try {
         const { data } = await axios.post("/dj-rest-auth/login/", logInData, {
-          withCredentials: true,
+          withCredentials: true,  // Ensure cookies are sent with the request
         });
+        setCurrentUser(data.user);
+        setTokenTimestamp(data);
     
-        // Explicitly fetch the current user right after login
-        const userRes = await axios.get("/dj-rest-auth/user/");
-        setCurrentUser(userRes.data);
-    
-        navigate("/feed");
+        // Wait until state is updated before navigating
+        navigate("/feed"); // Navigate after state change
       } catch (err) {
         setErrors(err.response?.data || {});
       }

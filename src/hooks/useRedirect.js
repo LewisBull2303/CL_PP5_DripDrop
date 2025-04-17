@@ -1,24 +1,24 @@
 import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { useNavigate } from "react-router";
+import axios from "axios";
 
-/**
- * Redirects the user based on authentication status.
- * 
- * @param {"loggedIn" | "loggedOut"} userAuthStatus
- * If "loggedIn", redirects to "/" if the user IS logged in.
- * If "loggedOut", redirects to "/" if the user is NOT logged in.
- */
 export const useRedirect = (userAuthStatus) => {
-  const currentUser = useCurrentUser();
-  const navigate = useNavigate();
+  const history = useNavigate();
 
   useEffect(() => {
-    if (
-      (userAuthStatus === "loggedIn" && currentUser) ||
-      (userAuthStatus === "loggedOut" && !currentUser)
-    ) {
-      navigate("/");
-    }
-  }, [navigate, userAuthStatus, currentUser]);
+    const handleMount = async () => {
+      try {
+        await axios.post("/dj-rest-auth/token/refresh/");
+        if (userAuthStatus === "loggedIn") {
+          history("/feed");
+        }
+      } catch (err) {
+        if (userAuthStatus === "loggedOut") {
+          history("/");
+        }
+      }
+    };
+
+    handleMount();
+  }, [history, userAuthStatus]);
 };
