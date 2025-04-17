@@ -24,7 +24,7 @@ export const CurrentUserProvider = ({ children }) => {
       console.log("WORKING CORRECTLY 1")
       setCurrentUser(data);
     } catch (err) {
-      // console.log(err);
+        console.log(err);
     }
   };
 
