@@ -38,14 +38,14 @@ function LogInForm() {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const { data } = await axios.post("/dj-rest-auth/login/", logInData);
+        const { data } = await axios.post("/dj-rest-auth/login/", logInData, {
+          withCredentials: true,  // Ensure cookies are sent with the request
+        });
         setCurrentUser(data.user);
         setTokenTimestamp(data);
     
         // Wait until state is updated before navigating
-        setTimeout(() => {
-          navigate("/feed"); // Navigate after state change
-        }, 100); // Adding a small delay
+        navigate("/feed"); // Navigate after state change
       } catch (err) {
         setErrors(err.response?.data || {});
       }
