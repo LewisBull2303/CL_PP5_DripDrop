@@ -40,7 +40,6 @@ function LogInForm() {
       try {
         const { data } = await axios.post("/dj-rest-auth/login/", logInData);
         setCurrentUser(data.user);
-        console.log(setCurrentUser);
         setTokenTimestamp(data);
     
         // Wait until state is updated before navigating
