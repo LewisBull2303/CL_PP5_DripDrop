@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "../../styles/LogInSignupForm.module.css";
 import appStyles from "../../App.module.css";
 import { Alert, Form, Button, Col, Row, Container } from "react-bootstrap";
 import axios from "axios";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
-import { useRedirect } from "../../hooks/useRedirect";
+import { useSetCurrentUser, useCurrentUser } from "../../contexts/CurrentUserContext";
 import { setTokenTimestamp } from "../../utils/utils";
 
 function LogInForm() {
   const setCurrentUser = useSetCurrentUser();
-  useRedirect("loggedIn");
-
+  const { currentUser } = useCurrentUser(); // Get the current user from context
+  const navigate = useNavigate();
+  
   const [logInData, setLogInData] = useState({
     username: "",
     password: "",
@@ -19,11 +19,14 @@ function LogInForm() {
 
   const { username, password } = logInData;
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
 
-  /* 
-    Handles changes to any of the input fields
-  */
+  // UseEffect to handle navigation once user is logged in
+  useEffect(() => {
+    if (currentUser) {
+      navigate("/feed"); // Redirect to /feed once user is authenticated
+    }
+  }, [currentUser, navigate]); // Dependencies: re-run effect when currentUser changes
+
   const handleChange = (e) => {
     setLogInData({
       ...logInData,
@@ -31,27 +34,21 @@ function LogInForm() {
     });
   };
 
-  /* 
-    Handles submitted form data on logging in
-    Redirect user to home page
-  */
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const { data } = await axios.post("/dj-rest-auth/login/", logInData, {
-          withCredentials: true,  // Ensure cookies are sent with the request
-        });
-        setCurrentUser(data.user);
-        setTokenTimestamp(data);
-    
-        // Wait until state is updated before navigating
-        navigate("/feed"); // Navigate after state change
-      } catch (err) {
-        setErrors(err.response?.data || {});
-      }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post("/dj-rest-auth/login/", logInData, {
+        withCredentials: true,  // Ensure cookies are sent with the request
+      });
+      setCurrentUser(data.user); // Update the global user state
+      setTokenTimestamp(data);   // Store token timestamps or perform any other logic
 
-  // 🔧 Helper to safely render field-specific errors
+    } catch (err) {
+      setErrors(err.response?.data || {});
+    }
+  };
+
+  // Helper to safely render field-specific errors
   const renderFieldErrors = (field) => {
     return (
       Array.isArray(errors[field]) &&
