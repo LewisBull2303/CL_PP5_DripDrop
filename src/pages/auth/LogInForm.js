@@ -23,6 +23,7 @@ function LogInForm() {
   // UseEffect to handle navigation once user is logged in
   useEffect(() => {
     if (currentUser) {
+      print("LOGGED IN CORRECTLY")
       navigate("/");
     }
   }, [currentUser, navigate]); // Dependencies: re-run effect when currentUser changes
